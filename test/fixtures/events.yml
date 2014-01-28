@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  content: MyText
+  event_date: 2014-01-28 14:27:56
+  updated_at: 2014-01-28 14:27:56
+  resolved_at: 2014-01-28 14:27:56
+  resolved: false
+  status_id: 1
+
+two:
+  title: MyString
+  content: MyText
+  event_date: 2014-01-28 14:27:56
+  updated_at: 2014-01-28 14:27:56
+  resolved_at: 2014-01-28 14:27:56
+  resolved: false
+  status_id: 1

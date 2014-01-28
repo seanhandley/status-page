@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  comment: MyText
+  added_by: MyString
+  event_id: 1
+
+two:
+  comment: MyText
+  added_by: MyString
+  event_id: 1
