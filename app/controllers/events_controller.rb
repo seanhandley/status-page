@@ -5,6 +5,9 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    
+    #We need to pull out our comments here
+    @comments = Comment.find_by_sql("SELECT * FROM comments INNER JOIN events ON comments.event_id = events.id")
   end
 
   # GET /events/1

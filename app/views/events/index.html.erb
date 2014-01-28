@@ -1,39 +1,26 @@
 <h1>Listing events</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Event date</th>
-      <th>Updated at</th>
-      <th>Resolved at</th>
-      <th>Resolved</th>
-      <th>Status</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
+<div class="events">
     <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.content %></td>
-        <td><%= event.event_date %></td>
-        <td><%= event.updated_at %></td>
-        <td><%= event.resolved_at %></td>
-        <td><%= event.resolved %></td>
-        <td><%= event.status_id %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+      <div class="event well">
+        <p><%= event.title %><p>
+        <p><%= event.content %></p>
+        <p><%= event.status_id %></p>
+        <%= link_to 'Show', event %>
+        <%= link_to 'Edit', edit_event_path(event) %>
+        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <div class="comments">
+          <p>Updates</p>
+          <% @comments.each do |comment| %>
+            <%if comment.event_id == event.id %>
+            <div class="comment">
+              <p><%= comment.comment %></p>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+  <% end %>
+</div> 
 <%= link_to 'New Event', new_event_path %>
