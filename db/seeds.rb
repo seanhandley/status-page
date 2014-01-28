@@ -5,3 +5,27 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#Make our statuses seed data
+Status.delete_all
+Status.create(
+               [
+                  {
+                    :id => 1,
+                    :name => 'Critcal',
+                    :colour => 'FF0000'},  
+                  {
+                    :id => 2,
+                    :name => 'Warning',
+                    :colour => 'FF7400'
+                  },
+                  {
+                    :id => 3,
+                    :name => 'Minor',
+                    :colour => 'FFD300'},
+                  {
+                    :id => 4,
+                    :name => 'Informational',
+                    :colour => '3914AF'}
+                  ]
+               )
