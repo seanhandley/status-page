@@ -1,0 +1,20 @@
+    <% @events.each do |event| %>
+      <div class="event well">
+        <p><%= event.title %><p>
+        <p><%= event.content %></p>
+        <p><%= event.status_id %></p>
+        <%= link_to 'Show', event %>
+        <%= link_to 'Edit', edit_event_path(event) %>
+        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <div class="comments">
+          <p>Updates</p>
+          <% @comments.each do |comment| %>
+            <%if comment.event_id == event.id %>
+            <div class="comment">
+              <p><%= comment.comment %></p>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+  <% end %>

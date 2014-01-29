@@ -1,26 +1,19 @@
 <h1>Listing events</h1>
 
+<div class="event-choice-area">
+  <div class="active-events-button">
+    <%= button_to 'Active Events', {action: "index", event_type: :active}, method: :get, remote: true, :class => "btn btn-default btn-small" %>
+  </div>
+  <div class="scheduled-events-button">
+    <%= button_to 'Scheduled Events', {action: "index", event_type: :scheduled}, method: :get, remote: true, :class => "btn btn-default btn-small" %>
+  </div>
+  <div class="resolved-events-button">
+    <%= button_to 'Resolved Events', {action: "index", event_type: :resolved}, method: :get, remote: true, :class => "btn btn-default btn-small" %>
+  </div>
+</div>
 
 <div class="events">
-    <% @events.each do |event| %>
-      <div class="event well">
-        <p><%= event.title %><p>
-        <p><%= event.content %></p>
-        <p><%= event.status_id %></p>
-        <%= link_to 'Show', event %>
-        <%= link_to 'Edit', edit_event_path(event) %>
-        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <div class="comments">
-          <p>Updates</p>
-          <% @comments.each do |comment| %>
-            <%if comment.event_id == event.id %>
-            <div class="comment">
-              <p><%= comment.comment %></p>
-            </div>
-            <% end %>
-          <% end %>
-        </div>
-    </div>
-  <% end %>
-</div> 
+  <%= render @partial_to_get %>
+</div>
+
 <%= link_to 'New Event', new_event_path %>

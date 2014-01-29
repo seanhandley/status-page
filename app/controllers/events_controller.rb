@@ -4,10 +4,22 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+
+    if params["event_type"] == "resolved"
+      @partial_to_get = "resolved"
+    elsif params["event_type"] == "scheduled"
+      @partial_to_get = "scheduled"
+    else
+      @events = Event.all
+      #We need to pull out our comments here
+      @comments = Comment.find_by_sql("SELECT * FROM comments INNER JOIN events ON comments.event_id = events.id")
+      @partial_to_get = "active"
+      respond_to do |format|
+        format.js {}
+        format.html {render "index"}
+      end
+    end
     
-    #We need to pull out our comments here
-    @comments = Comment.find_by_sql("SELECT * FROM comments INNER JOIN events ON comments.event_id = events.id")
   end
 
   # GET /events/1
