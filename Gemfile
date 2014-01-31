@@ -50,4 +50,6 @@ gem 'twitter-bootstrap-rails'
 
 gem 'devise'
 
+gem 'jquery-turbolinks'
+
 ####GEMS ADDED END#######

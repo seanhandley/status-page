@@ -1,4 +1,5 @@
-<h1>Editing event</h1>
+<script src="/assets/events.js?body=1"></script>
+<h1>Quick Edit</h1>
 
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
@@ -13,18 +14,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :event_date %><br>
-    <%= f.datetime_select :event_date %>
-  </div>
   <div class="field">
     <%= f.hidden_field :updated_at, :value => @current_time %>
   </div>
@@ -61,6 +50,3 @@
   </div>
 <% end %>
 
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>

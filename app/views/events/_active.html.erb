@@ -1,10 +1,14 @@
+    <h1>active events</h1>
+    <p id="notice"><%= notice %></p>
     <% @events.each do |event| %>
       <div class="event well">
         <p><%= event.title %><p>
+        <p><%= event.updated_at %><p>
         <p><%= event.content %></p>
         <p><%= event.status_id %></p>
         <%= link_to 'Show', event %>
         <%= link_to 'Edit', edit_event_path(event) %>
+        <%= link_to 'Quick Update', edit_event_path(event), { remote: true } %>
         <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
         <div class="comments">
           <p>Updates</p>

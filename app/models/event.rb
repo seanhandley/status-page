@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :status
   has_many :comments, dependent: :destroy
+  accepts_nested_attributes_for :comments, :allow_destroy => true, :reject_if => lambda { |a| a[:comment].blank? }
   
   validates :title, :content, :event_date, :status_id, :presence => true
   
