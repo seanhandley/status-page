@@ -1,32 +1,28 @@
-    <h1>active events</h1>
-    <p id="notice"><%= params[:notice] %></p>
     <% if @events.blank? %>
         <p>No Active events</p>
     <% else %>
         <% @events.each do |event| %>
-          <div class="event well" id="active-event-area">
-            <p><%= event.title %><p>
-            <p><%= event.updated_at %><p>
-            <p><%= event.content %></p>
+        <div class="event" id="active-event-area">
+            <div class="event-title"><p><%= event.title %><p></div>
+            <div class="event-body">
+            <div class="event-updated"><p>Last Update: <%= event.updated_at %><p></div>
             
             <% @statuses.each do |s| #we need the name of our status not the number
                 if event.status_id == s.id
                     @status = s.name
+                    @colour = s.colour
                 end
             end %>
             
-            <p class="active-event-status"><%= @status %></p>
-            <%= link_to 'Show', event %>
-            <%= link_to 'Edit', edit_event_path(event) %>
-            <%= link_to 'Quick Update', edit_event_path(event), { remote: true } %>
-            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <div class="event-status"><p>Status: </p><p class="active-event-status" style="color: #<%= @colour %>" ><%= @status %></p></div>
+            <div class="event-content"><p><%= event.content %></p></div>
             <div class="comments">
-              <p>Updates</p>
+              <h5 class="comments-header">Latest Update:</h5>
               <% i = 0 %>
               <% @comments.each do |comment| %>
                 <%if comment.event_id == event.id %>
                 <%if i == 1 %>
-                <div class="flipper">Click for more updates</div>
+                <div class="flipper">Show Previous Updates</div>
                 <div class="more-comments">
                 <% end %>
                 <div class="comment">
@@ -39,6 +35,10 @@
                 </div> <!-- end more comments -->
             <% end %>
             </div>
+            <%= link_to 'Edit', edit_event_path(event) %>
+            <%= link_to 'Quick Update', edit_event_path(event), { remote: true } %>
+            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
         </div>
       <% end %>
     <% end %>
@@ -48,6 +48,19 @@
         $(document).ready(function(){
             $(".flipper").click(function(){
                 $(this).next("div.more-comments").slideToggle("slow");
+                if ($(this).text() == "Show Previous Updates"){
+                    $(this).text("Hide Previous Updates")
+                }else if ($(this).text() == "Hide Previous Updates"){
+                    $(this).text("Show Previous Updates")
+                };
             });
         });
+        
+        //Setting active class on buttons
+        $(document).ready(function() {
+            $(".active-events-button .button-class").removeClass("button-class").addClass("button-class-active");
+            $(".scheduled-events-button .button-class-active").removeClass("button-class-active").addClass("button-class");
+            $(".resolved-events-button .button-class-active").removeClass("button-class-active").addClass("button-class");
+        });
+        
     </script>

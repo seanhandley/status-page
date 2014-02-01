@@ -1,29 +1,27 @@
-<h1>scheduled events</h1>
     <% if @events.blank? %>
         <p>No Scheduled events</p>
     <% else %>
       <% @events.each do |event| %>
-            <div class="event well">
-              <p><%= event.title %><p>
-              <p><%= event.content %></p>
-      
+            <div class="event">
+            <div class="event-title"><p><%= event.title %><p></div>
+            <div class="event-body">
+            <div class="event-updated"><p>Scheduled For: <%= event.event_date %><p></div>
                   <% @statuses.each do |s| #we need the name of our status not the number
                         if event.status_id == s.id
                               @status = s.name
+                              @colour = s.colour
                         end
                   end %>
               
-              <p><%= @status %></p>
-              <%= link_to 'Show', event %>
-              <%= link_to 'Edit', edit_event_path(event) %>
-              <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <div class="event-status"><p>Status: </p><p style="color: #<%= @colour %>" ><%= @status %></p></div>
+            <div class="event-content"><p><%= event.content %></p></div>
                   <div class="comments">
-                    <p>Updates</p>
+              <h5 class="comments-header">Latest Update:</h5>
                     <% i = 0 %>
                     <% @comments.each do |comment| %>
                       <%if comment.event_id == event.id %>
                       <%if i == 1 %>
-                      <div class="flipper">Click for more updates</div>
+                  <div class="flipper">Show Previous Updates</div>
                       <div class="more-comments">
                       <% end %>
                       <div class="comment">
@@ -36,7 +34,11 @@
                       </div> <!-- end more comments -->
                   <% end %>
                   </div>
-          </div>
+              <%= link_to 'Show', event %>
+              <%= link_to 'Edit', edit_event_path(event) %>
+              <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+            </div>
         <% end %>
   <% end %>
   
@@ -45,6 +47,18 @@
         $(document).ready(function(){
             $(".flipper").click(function(){
                 $(this).next("div.more-comments").slideToggle("slow");
+                if ($(this).text() == "Show Previous Updates"){
+                    $(this).text("Hide Previous Updates")
+                }else if ($(this).text() == "Hide Previous Updates"){
+                    $(this).text("Show Previous Updates")
+                };
             });
+        });
+        
+      //Setting active class on buttons
+        $(document).ready(function() {
+            $(".scheduled-events-button .button-class").removeClass("button-class").addClass("button-class-active");
+            $(".resolved-events-button .button-class-active").removeClass("button-class-active").addClass("button-class");
+            $(".active-events-button .button-class-active").removeClass("button-class-active").addClass("button-class");
         });
     </script>

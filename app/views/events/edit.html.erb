@@ -1,66 +1,70 @@
-<h1>Editing event</h1>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
 
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <h1>Editing event</h1>
+      
+      <%= form_for(@event) do |f| %>
+        <% if @event.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      
+            <ul>
+            <% @event.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+      
+        <div class="field">
+          <%= f.label :title %><br>
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <%= f.label :content %><br>
+          <%= f.text_area :content %>
+        </div>
+        <div class="field">
+          <%= f.label :event_date %><br>
+          <%= f.datetime_select :event_date %>
+        </div>
+        <div class="field">
+          <%= f.hidden_field :updated_at, :value => @current_time %>
+        </div>
+        <div class="field" id="resolved_time"></div> <!--Using jquery to insert the resolved time when needed -->
+        <div class="field">
+          <%= f.label :resolved %><br>
+          <%= f.check_box :resolved %>
+        </div>
+        <div class="field">
+          <label for="event_status">Status</label>
+          <%= f.select(:status_id, options_from_collection_for_select(@statuses, 'id', 'name', @event.status_id)) %>
+        </div>
+        
+        <!-- Setup our comments part -->
+        <%= f.fields_for :comments do |builder| %>
+          <% if builder.object.new_record? %>
+            <div class="field">
+              <%= builder.label :comment %><br>
+              <%= builder.text_area :comment %>
+            </div>
+            <div class="field">
+              <%= builder.label :added_by %><br>
+              <%= builder.text_field :added_by %>
+            </div>
+            <div class="hidden">
+              <%= builder.label :event_id %><br>
+              <%= builder.number_field :event_id %>
+            </div>
+          <% end %>
+       <% end %>
+        
+        <div class="actions">
+          <%= f.submit %>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :event_date %><br>
-    <%= f.datetime_select :event_date %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :updated_at, :value => @current_time %>
-  </div>
-  <div class="field" id="resolved_time"></div> <!--Using jquery to insert the resolved time when needed -->
-  <div class="field">
-    <%= f.label :resolved %><br>
-    <%= f.check_box :resolved %>
-  </div>
-  <div class="field">
-    <label for="event_status">Status</label>
-    <%= f.select(:status_id, options_from_collection_for_select(@statuses, 'id', 'name', @event.status_id)) %>
-  </div>
-  
-  <!-- Setup our comments part -->
-  <%= f.fields_for :comments do |builder| %>
-    <% if builder.object.new_record? %>
-      <div class="field">
-        <%= builder.label :comment %><br>
-        <%= builder.text_area :comment %>
-      </div>
-      <div class="field">
-        <%= builder.label :added_by %><br>
-        <%= builder.text_field :added_by %>
-      </div>
-      <div class="hidden">
-        <%= builder.label :event_id %><br>
-        <%= builder.number_field :event_id %>
-      </div>
-    <% end %>
- <% end %>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+      
+      
+      <%= link_to 'Show', @event %> |
+      <%= link_to 'Back', events_path %>

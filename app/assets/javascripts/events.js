@@ -47,13 +47,13 @@ function GetCurrentStatus()
     }).get();
     
     if (jQuery.inArray("Critcal", statuses) != -1) {
-        current_status = "Critcal";
+        current_status = "There are Critical events ongoing, see below for full information";
     }else if (jQuery.inArray("Warning", statuses) != -1){
-        current_status = "Warning";
+        current_status = "There are Warning events ongoing, see below for full information";
     }else if (jQuery.inArray("Minor", statuses) != -1){
-        current_status = "Minor";
+        current_status = "There are Minor events ongoing, see below for full information";
     }else if (jQuery.inArray("Informational", statuses != -1)){
-        current_status = "Informational";
+        current_status = "There are events ongoing, these should have no effect on service, see below for information";
     };
     
     return current_status;

@@ -1,24 +1,28 @@
 <div class="current-status-area">
-  <h3 id="current-status-header">Current Status:</h3>
-  <p id="current-status-text">Everything OK</p>
+  <h4 id="current-status-text">Everything OK</h4>
 </div>
 
-<div class="event-choice-area">
-  <div class="active-events-button">
-    <%= button_to 'Active Events', {action: "index", event_type: :active}, method: :get, remote: true, :class => "btn btn-default btn-small" %>
-  </div>
-  <div class="scheduled-events-button">
-    <%= button_to 'Scheduled Events', {action: "index", event_type: :scheduled}, method: :get, remote: true, :class => "btn btn-default btn-small" %>
-  </div>
-  <div class="resolved-events-button">
-    <%= button_to 'Resolved Events', {action: "index", event_type: :resolved}, method: :get, remote: true, :class => "btn btn-default btn-small" %>
-  </div>
-</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
 
-<div class="events">
-  <%= render @partial_to_get %>
-</div>
-
-<%= link_to 'New Event', new_event_path %>
-
-<%= render "layouts/modal" %>
+      <div class="event-choice-area">
+        <div class="active-events-button events-button">
+          <%= button_to 'Active Events', {action: "index", event_type: :active}, method: :get, remote: true, :class => "button-class" %>
+        </div>
+        <div class="scheduled-events-button events-button"">
+          <%= button_to 'Scheduled Events', {action: "index", event_type: :scheduled}, method: :get, remote: true, :class => "button-class" %>
+        </div>
+        <div class="resolved-events-button events-button"">
+          <%= button_to 'Resolved Events', {action: "index", event_type: :resolved}, method: :get, remote: true, :class => "button-class" %>
+        </div>
+      </div>
+      
+      <div class="events">
+        <p id="notice"><%= params[:notice] %></p>
+        <%= render @partial_to_get %>
+      </div>
+      
+      <%= link_to 'New Event', new_event_path %>
+      
+      <%= render "layouts/modal" %>
