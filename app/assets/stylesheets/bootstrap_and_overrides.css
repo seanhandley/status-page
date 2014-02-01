@@ -24,3 +24,7 @@
     float: right;
 }
 /*Changes to navigation end*/
+
+.more-comments{
+    display: none;
+}

@@ -1,29 +1,50 @@
 <h1>scheduled events</h1>
-
-<% @events.each do |event| %>
-      <div class="event well">
-        <p><%= event.title %><p>
-        <p><%= event.content %></p>
-
-            <% @statuses.each do |s| #we need the name of our status not the number
-                  if event.status_id == s.id
-                        @status = s.name
-                  end
-            end %>
-        
-        <p><%= @status %></p>
-        <%= link_to 'Show', event %>
-        <%= link_to 'Edit', edit_event_path(event) %>
-        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <div class="comments">
-          <p>Updates</p>
-          <% @comments.each do |comment| %>
-            <%if comment.event_id == event.id %>
-            <div class="comment">
-              <p><%= comment.comment %></p>
-            </div>
-            <% end %>
-          <% end %>
-        </div>
-    </div>
+    <% if @events.blank? %>
+        <p>No Scheduled events</p>
+    <% else %>
+      <% @events.each do |event| %>
+            <div class="event well">
+              <p><%= event.title %><p>
+              <p><%= event.content %></p>
+      
+                  <% @statuses.each do |s| #we need the name of our status not the number
+                        if event.status_id == s.id
+                              @status = s.name
+                        end
+                  end %>
+              
+              <p><%= @status %></p>
+              <%= link_to 'Show', event %>
+              <%= link_to 'Edit', edit_event_path(event) %>
+              <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <div class="comments">
+                    <p>Updates</p>
+                    <% i = 0 %>
+                    <% @comments.each do |comment| %>
+                      <%if comment.event_id == event.id %>
+                      <%if i == 1 %>
+                      <div class="flipper">Click for more updates</div>
+                      <div class="more-comments">
+                      <% end %>
+                      <div class="comment">
+                        <p><%= comment.comment %></p>
+                      </div>
+                      <% i += 1 %>
+                      <% end %>
+                    <% end %>
+                  <% if i >= 1 %>
+                      </div> <!-- end more comments -->
+                  <% end %>
+                  </div>
+          </div>
+        <% end %>
   <% end %>
+  
+      <script type="text/javascript">
+        //Function for more comments slider
+        $(document).ready(function(){
+            $(".flipper").click(function(){
+                $(this).next("div.more-comments").slideToggle("slow");
+            });
+        });
+    </script>

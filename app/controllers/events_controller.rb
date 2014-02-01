@@ -110,7 +110,7 @@ class EventsController < ApplicationController
         event_ids.push(event.id)
       end
       #Get commnets for our events
-      comments = Comment.where(event_id: event_ids)
+      comments = Comment.where(event_id: event_ids).order(:created_at).reverse_order
       
       #return our results
       return events, comments

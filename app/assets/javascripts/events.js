@@ -25,4 +25,37 @@ function GetDateTime()
     };      
     var param2 = param1.getFullYear() + '-' + month + '-' + param1.getDate() + ' ' + param1.getHours() + ':' + param1.getMinutes() + ':' + param1.getSeconds();
     return param2;
-}
+};
+
+//Function for getting and setting the current status.
+//This should only update or change when the active partial is shown as we dont want it to take into account the statu
+//of scheduled or resolved alerts
+
+$(document).ready(function() {
+    if ($("#active-event-area").length) {
+        current_status = GetCurrentStatus();
+        $("#current-status-text").text(current_status);
+    }
+});
+
+function GetCurrentStatus()
+{
+    var current_status
+    var statuses = [];
+    statuses = $(".active-event-status").map(function(){
+       return this.innerHTML;
+    }).get();
+    
+    if (jQuery.inArray("Critcal", statuses) != -1) {
+        current_status = "Critcal";
+    }else if (jQuery.inArray("Warning", statuses) != -1){
+        current_status = "Warning";
+    }else if (jQuery.inArray("Minor", statuses) != -1){
+        current_status = "Minor";
+    }else if (jQuery.inArray("Informational", statuses != -1)){
+        current_status = "Informational";
+    };
+    
+    return current_status;
+};
+
