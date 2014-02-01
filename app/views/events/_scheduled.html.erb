@@ -4,7 +4,14 @@
       <div class="event well">
         <p><%= event.title %><p>
         <p><%= event.content %></p>
-        <p><%= event.status_id %></p>
+
+            <% @statuses.each do |s| #we need the name of our status not the number
+                  if event.status_id == s.id
+                        @status = s.name
+                  end
+            end %>
+        
+        <p><%= @status %></p>
         <%= link_to 'Show', event %>
         <%= link_to 'Edit', edit_event_path(event) %>
         <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -5,7 +5,14 @@
         <p><%= event.title %><p>
         <p><%= event.updated_at %><p>
         <p><%= event.content %></p>
-        <p><%= event.status_id %></p>
+        
+        <% @statuses.each do |s| #we need the name of our status not the number
+            if event.status_id == s.id
+                @status = s.name
+            end
+        end %>
+        
+        <p><%= @status %></p>
         <%= link_to 'Show', event %>
         <%= link_to 'Edit', edit_event_path(event) %>
         <%= link_to 'Quick Update', edit_event_path(event), { remote: true } %>

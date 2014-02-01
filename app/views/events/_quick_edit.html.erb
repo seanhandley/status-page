@@ -23,8 +23,8 @@
     <%= f.check_box :resolved %>
   </div>
   <div class="field">
-    <%= f.label :status_id %><br>
-    <%= f.number_field :status_id %>
+    <label for="event_status">Status</label>
+    <%= f.select(:status_id, options_from_collection_for_select(@statuses, 'id', 'name', @event.status_id)) %>
   </div>
   
   <!-- Setup our comments part -->
@@ -38,7 +38,7 @@
         <%= builder.label :added_by %><br>
         <%= builder.text_field :added_by %>
       </div>
-      <div class="field">
+      <div class="hidden">
         <%= builder.label :event_id %><br>
         <%= builder.number_field :event_id %>
       </div>

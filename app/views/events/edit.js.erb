@@ -3,5 +3,5 @@ $modal = $('.modal'),
 $modalBody = $('.modal .modal-body'),
 $modalHeading = $('.modal .modal-heading');
 $modalHeading.html("<%= @event.title %>");
-$modalBody.html("<%= escape_javascript(render "edit") %>");
+$modalBody.html("<%= escape_javascript(render "quick_edit") %>");
 $modal.modal();

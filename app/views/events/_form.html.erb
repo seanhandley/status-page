@@ -23,21 +23,13 @@
     <%= f.label :event_date %><br>
     <%= f.datetime_select :event_date %>
   </div>
-  <div class="field">
-    <%= f.label :updated_at %><br>
-    <%= f.datetime_select :updated_at %>
-  </div>
-  <div class="field">
-    <%= f.label :resolved_at %><br>
-    <%= f.datetime_select :resolved_at %>
-  </div>
-  <div class="field">
+  <div class="hidden">
     <%= f.label :resolved %><br>
     <%= f.check_box :resolved %>
   </div>
   <div class="field">
-    <%= f.label :status_id %><br>
-    <%= f.number_field :status_id %>
+    <label for="event_status">Status</label>
+    <%= f.select(:status_id, options_from_collection_for_select(@statuses, 'id', 'name', @event.status_id)) %>
   </div>
   <div class="actions">
     <%= f.submit %>

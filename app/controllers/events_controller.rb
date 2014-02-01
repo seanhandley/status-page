@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    @statuses = get_statuses()
     #Depending on the event type we call the get_events_comments function to return the
     #required events and comments, we then set the partial we want to add to our index page
     if params["event_type"] == "resolved"
@@ -26,6 +27,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @statuses = get_statuses()
   end
 
   # GET /events/1/edit
@@ -33,16 +35,18 @@ class EventsController < ApplicationController
     #We want to have a new comment available on editing
     @event.comments.build
     @current_time = get_current_time() #We need the current time for updates
+    @statuses = get_statuses()
   end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @statuses = get_statuses()
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to action: "index", notice: 'Event was successfully created.' } #Return to index on updating rather than show
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -116,5 +120,11 @@ class EventsController < ApplicationController
       current_time = Time.new
       current_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
       return current_time
+    end
+    
+    #function for setting our statuses correctly
+    def get_statuses()
+      statuses = Status.find_by_sql("SELECT id, name, colour FROM statuses")
+      return statuses
     end
   end
