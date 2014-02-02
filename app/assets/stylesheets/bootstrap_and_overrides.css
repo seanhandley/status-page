@@ -240,12 +240,12 @@ a{
 
 a:hover{
     color: #6d6e70 !important;
-    background-color: white !important;
+    background-color: transparent !important;
     text-decoration: none !important;
 }
 .support-link:hover{
     color: #6d6e70 !important;
-    background-color: white !important;
+    background-color: transparent !important;
     text-decoration: none !important;
 }
 

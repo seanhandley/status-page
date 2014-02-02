@@ -13,6 +13,8 @@ class EventsController < ApplicationController
     elsif params["event_type"] == "scheduled"
       @events, @comments = get_events_and_comments("scheduled")
       @partial_to_get = "scheduled"
+    elsif params["event_type"] == "feed"
+      @events, @comments = get_events_and_comments("feed")
     else
       @events, @comments = get_events_and_comments("active")
       @partial_to_get = "active"
@@ -109,6 +111,8 @@ class EventsController < ApplicationController
         events = Event.where(resolved: 't').order(:resolved_at).reverse_order.page(params[:page]).per(4)
       elsif event_type == "scheduled"
         events = Event.find_by_sql("SELECT * FROM events WHERE resolved = 'f' AND event_date > '#{current_time}'")
+      elsif event_type == "feed"
+        events = Event.where(resolved: 'f')
       else
         events = Event.find_by_sql("SELECT * FROM events WHERE resolved = 'f' AND event_date <= '#{current_time}'")
       end

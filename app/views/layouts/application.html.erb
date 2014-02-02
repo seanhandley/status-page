@@ -47,7 +47,7 @@
               <ul class="nav">
                 <li><%= link_to "Support", "http://support.melbourne.co.uk/" %></li>
                 <li><%= link_to "Twitter", "http://www.twitter.com/melbournehost"  %></li>
-                <li><%= link_to "RSS", "/"  %></li>
+                <li><%= link_to "RSS", events_path(:rss, event_type: :feed) %></li>
                 <% if user_signed_in? %>
                   <li><%= link_to "Sign out", destroy_user_session_path,  :method => :delete  %></li>
                 <% else %>
