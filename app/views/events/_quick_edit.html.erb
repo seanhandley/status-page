@@ -1,5 +1,4 @@
 <script src="/assets/events.js?body=1"></script>
-<h1>Quick Edit</h1>
 
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
@@ -19,7 +18,7 @@
   </div>
   <div class="field" id="resolved_time"></div> <!--Using jquery to insert the resolved time when needed -->
   <div class="field">
-    <%= f.label :resolved %><br>
+    <%= f.label :resolved %>
     <%= f.check_box :resolved %>
   </div>
   <div class="field">

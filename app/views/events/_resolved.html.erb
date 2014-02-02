@@ -6,7 +6,7 @@
         <div class="event">
             <div class="event-title"><p><%= event.title %><p></div>
             <div class="event-body">
-            <div class="event-updated"><p>Resolved At: <%= event.resolved_at.strftime("%d-%m-%Y @ %H:%M") %><p></div>
+            <div class="event-updated"><p>Resolved: <%= event.resolved_at.strftime("%d-%m-%Y at %H:%M") %><p></div>
             
             <% @statuses.each do |s| #we need the name of our status not the number
                 if event.status_id == s.id
@@ -43,6 +43,9 @@
         </div>
         </div>
       <% end %>
+      
+      <%= paginate @events, remote: true %>
+      
     <% end %>
     
     <script type="text/javascript">

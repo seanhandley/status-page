@@ -3,7 +3,7 @@
   <div class="row-fluid">
     <div class="span12">
 
-      <h1>Editing event</h1>
+      <h1>Edit Event</h1>
       
       <%= form_for(@event) do |f| %>
         <% if @event.errors.any? %>
@@ -23,8 +23,7 @@
           <%= f.text_field :title %>
         </div>
         <div class="field">
-          <%= f.label :content %><br>
-          <%= f.text_area :content %>
+          <%= f.label :content %> <%= f.text_area :content, :size => "30x10" %>
         </div>
         <div class="field">
           <%= f.label :event_date %><br>
@@ -35,7 +34,7 @@
         </div>
         <div class="field" id="resolved_time"></div> <!--Using jquery to insert the resolved time when needed -->
         <div class="field">
-          <%= f.label :resolved %><br>
+          <%= f.label :resolved %>
           <%= f.check_box :resolved %>
         </div>
         <div class="field">
@@ -71,7 +70,7 @@
                   <%= builder.number_field :event_id %>
                 </div>
                  <div class="field">
-                  <%= builder.label :_destory %><br>
+                  <%= builder.label :_destory, "Delete" %><br>
                   <%= builder.check_box :_destroy %>
                 </div>
               </div>

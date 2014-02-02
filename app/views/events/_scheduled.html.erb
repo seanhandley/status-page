@@ -8,7 +8,7 @@
             <div class="event">
             <div class="event-title"><p><%= event.title %><p></div>
             <div class="event-body">
-            <div class="event-updated"><p>Scheduled For: <%= event.event_date.strftime("%d-%m-%Y @ %H:%M") %><p></div>
+            <div class="event-updated"><p>Scheduled For: <%= event.event_date.strftime("%d-%m-%Y at %H:%M") %><p></div>
                   
                   <% @statuses.each do |s| #we need the name of our status not the number
                         if event.status_id == s.id

@@ -8,7 +8,7 @@
         <div class="event" id="active-event-area">
             <div class="event-title"><p><%= event.title %><p></div>
             <div class="event-body">
-            <div class="event-updated"><p>Last Update: <%= event.updated_at.strftime("%d-%m-%Y @ %H:%M") %><p></div>
+            <div class="event-updated"><p>Last Updated: <%= event.updated_at.strftime("%d-%m-%Y at %H:%M") %><p></div>
             
             <% @statuses.each do |s| #we need the name of our status not the number
                 if event.status_id == s.id
@@ -29,6 +29,9 @@
                 <div class="more-comments">
                 <% end %>
                 <div class="comment">
+                  <% if i >= 1 %>  
+                  <p class="comment-added-time">Added at <%= comment.created_at.strftime("%d-%m-%Y %H:%M") %></p>
+                  <% end %>
                   <p><%= comment.comment %></p>
                 </div>
                 <% i += 1 %>
