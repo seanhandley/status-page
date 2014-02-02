@@ -220,3 +220,90 @@ p, ol, ul, td{
 .more-comments{
     display: none;
 }
+
+.no-events-container{
+    text-align: center;
+    font-size: 24px !important;
+}
+
+.no-events-text{
+    font-size: 24px !important;
+}
+
+.support-link{
+    color: #c06 !important;
+}
+
+a{
+    color: #c06 !important;
+}
+
+a:hover{
+    color: #6d6e70 !important;
+    background-color: white !important;
+    text-decoration: none !important;
+}
+.support-link:hover{
+    color: #6d6e70 !important;
+    background-color: white !important;
+    text-decoration: none !important;
+}
+
+.brand:hover{
+    background-color: white !important;
+}
+
+@media(max-width: 767px){
+    
+    .brand-container{
+        width: 100%;
+        float: left;
+    }
+    
+    .nav-area{
+        width: 100%;
+        float: left;
+    }
+    
+    .nav{
+        float: left !important;
+    }
+}
+
+
+@media(max-width: 480px){
+    .event-choice-area{
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        vertical-align: middle;
+    }
+    
+    .event{
+        clear:  both;
+    }
+    
+    .active-events-button{
+        margin-top: 5px !important;
+    }
+    .events-button{
+        margin-top: 0px;
+        display: inline;
+        text-align: center;
+        width: 100%;
+    
+    }
+    
+    .events-button, form{
+        margin-bottom: 5px;
+    }
+    
+    .pagination{
+        margin-top: 0px;
+    }
+    
+    .navbar .btn-navbar {
+        display: block;
+    }
+
+}

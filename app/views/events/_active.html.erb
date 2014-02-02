@@ -1,5 +1,8 @@
     <% if @events.blank? %>
-        <p>No Active events</p>
+        <div class="no-events-container">
+            <p class="no-events-text">For support, please submit a ticket through our </p><a class="support-link" href="http://support.melbourne.co.uk/">support centre</a>
+            <div class="hero-image"><%= image_tag "super-hero.png" %></div>
+        </div>
     <% else %>
         <% @events.each do |event| %>
         <div class="event" id="active-event-area">

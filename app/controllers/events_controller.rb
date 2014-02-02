@@ -106,7 +106,7 @@ class EventsController < ApplicationController
       #Run required query
       if event_type == "resolved"
         #events = Event.find_by_sql("SELECT * FROM events WHERE resolved = 't'")
-        events = Event.where(resolved: 't').page(params[:page]).per(4)
+        events = Event.where(resolved: 't').order(:resolved_at).reverse_order.page(params[:page]).per(4)
       elsif event_type == "scheduled"
         events = Event.find_by_sql("SELECT * FROM events WHERE resolved = 'f' AND event_date > '#{current_time}'")
       else
