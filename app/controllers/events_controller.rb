@@ -26,16 +26,24 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
-    @statuses = get_statuses()
+    if user_signed_in?
+      @event = Event.new
+      @statuses = get_statuses()
+    else
+      redirect_to action: "index"
+    end
   end
 
   # GET /events/1/edit
   def edit
-    #We want to have a new comment available on editing
-    @event.comments.build
-    @current_time = get_current_time() #We need the current time for updates
-    @statuses = get_statuses()
+    if user_signed_in?
+      #We want to have a new comment available on editing
+      @event.comments.build
+      @current_time = get_current_time() #We need the current time for updates
+      @statuses = get_statuses()
+    else
+      redirect_to action: "index"
+    end
   end
 
   # POST /events

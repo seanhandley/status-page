@@ -23,6 +23,8 @@
         <%= render @partial_to_get %>
       </div>
       
-      <%= link_to 'New Event', new_event_path %>
+      <% if user_signed_in? %>
+        <%= link_to 'New Event', new_event_path %>
+      <% end %>
       
       <%= render "layouts/modal" %>

@@ -34,9 +34,9 @@
         <%= builder.label :comment %><br>
         <%= builder.text_area :comment %>
       </div>
-      <div class="field">
+      <div class="hidden">
         <%= builder.label :added_by %><br>
-        <%= builder.text_field :added_by %>
+        <%= builder.text_field :added_by, :value => current_user %>
       </div>
       <div class="hidden">
         <%= builder.label :event_id %><br>

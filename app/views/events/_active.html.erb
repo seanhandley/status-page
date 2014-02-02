@@ -31,13 +31,15 @@
                 <% i += 1 %>
                 <% end %>
               <% end %>
-            <% if i >= 1 %>
+            <% if i > 1 %>
                 </div> <!-- end more comments -->
             <% end %>
             </div>
-            <%= link_to 'Edit', edit_event_path(event) %>
-            <%= link_to 'Quick Update', edit_event_path(event), { remote: true } %>
-            <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% if user_signed_in? %>
+                <%= link_to 'Edit', edit_event_path(event) %>
+                <%= link_to 'Quick Update', edit_event_path(event), { remote: true } %>
+                <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
         </div>
         </div>
       <% end %>

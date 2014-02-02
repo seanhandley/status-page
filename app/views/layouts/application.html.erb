@@ -51,7 +51,11 @@
             <ul class="nav">
               <li><%= link_to "Support", "/http://support.melbourne.co.uk/"  %></li>
               <li><%= link_to "Twitter", "http://www.twitter.com/melbournehost"  %></li>
-              <li><%= link_to "Login", "/users/sign_in"  %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "Sign out", destroy_user_session_path,  :method => :delete  %></li>
+              <% else %>
+                <li><%= link_to "Login", "/users/sign_in"  %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         <!--</div>-->
