@@ -29,6 +29,9 @@
                       <div class="more-comments">
                       <% end %>
                       <div class="comment">
+                        <% if i >= 1 %>  
+                        <p class="comment-added-time">Added at <%= comment.created_at.strftime("%d-%m-%Y %H:%M") %></p>
+                        <% end %>
                         <p><%= comment.comment %></p>
                       </div>
                       <% i += 1 %>
