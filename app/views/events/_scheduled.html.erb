@@ -5,7 +5,7 @@
             <div class="event">
             <div class="event-title"><p><%= event.title %><p></div>
             <div class="event-body">
-            <div class="event-updated"><p>Scheduled For: <%= event.event_date %><p></div>
+            <div class="event-updated"><p>Scheduled For: <%= event.event_date.strftime("%d-%m-%Y @ %H:%M") %><p></div>
                   <% @statuses.each do |s| #we need the name of our status not the number
                         if event.status_id == s.id
                               @status = s.name
@@ -34,9 +34,8 @@
                       </div> <!-- end more comments -->
                   <% end %>
                   </div>
-              <%= link_to 'Show', event %>
               <%= link_to 'Edit', edit_event_path(event) %>
-              <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' } %>
             </div>
             </div>
         <% end %>

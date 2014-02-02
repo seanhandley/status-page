@@ -87,7 +87,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :content, :event_date, :updated_at, :resolved_at, :resolved, :status_id, comments_attributes: [:event_id, :comment, :added_by, :id])
+      params.require(:event).permit(:title, :content, :event_date, :updated_at, :resolved_at, :resolved, :status_id, comments_attributes: [:event_id, :comment, :added_by, :id, :_destroy])
     end
     
     #Our function for pulling the events and comments we need
@@ -97,7 +97,8 @@ class EventsController < ApplicationController
       
       #Run required query
       if event_type == "resolved"
-        events = Event.find_by_sql("SELECT * FROM events WHERE resolved = 't'")
+        #events = Event.find_by_sql("SELECT * FROM events WHERE resolved = 't'")
+        events = Event.where(resolved: 't').page(params[:page]).per(4)
       elsif event_type == "scheduled"
         events = Event.find_by_sql("SELECT * FROM events WHERE resolved = 'f' AND event_date > '#{current_time}'")
       else

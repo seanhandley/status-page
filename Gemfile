@@ -52,4 +52,6 @@ gem 'devise'
 
 gem 'jquery-turbolinks'
 
+gem 'kaminari'
+
 ####GEMS ADDED END#######

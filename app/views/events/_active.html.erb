@@ -5,7 +5,7 @@
         <div class="event" id="active-event-area">
             <div class="event-title"><p><%= event.title %><p></div>
             <div class="event-body">
-            <div class="event-updated"><p>Last Update: <%= event.updated_at %><p></div>
+            <div class="event-updated"><p>Last Update: <%= event.updated_at.strftime("%d-%m-%Y @ %H:%M") %><p></div>
             
             <% @statuses.each do |s| #we need the name of our status not the number
                 if event.status_id == s.id
@@ -37,7 +37,7 @@
             </div>
             <%= link_to 'Edit', edit_event_path(event) %>
             <%= link_to 'Quick Update', edit_event_path(event), { remote: true } %>
-            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
         </div>
       <% end %>
